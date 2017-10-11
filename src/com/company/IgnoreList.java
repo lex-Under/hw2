@@ -14,9 +14,13 @@ public class IgnoreList<T> implements List<T> {
 
     public IgnoreList(Collection<? extends T> infoElements, Collection<? extends T> ignoreElements){
         this.infoElements = new LinkedList<T>();
-        this.infoElements.addAll(infoElements);
+        if(infoElements!=null) {
+            this.infoElements.addAll(infoElements);
+        }
         this.ignoreElements = new HashSet<T>();
-        this.ignoreElements.addAll(ignoreElements);
+        if(ignoreElements!=null) {
+            this.ignoreElements.addAll(ignoreElements);
+        }
     }
 
     @Override
@@ -74,17 +78,9 @@ public class IgnoreList<T> implements List<T> {
         return infoElements.add(t);
     }
 
-    public boolean addIgnoring(T t) {
-        return ignoreElements.add(t);
-    }
-
     @Override
     public boolean remove(Object o) {
         return infoElements.remove(o);
-    }
-
-    public boolean removeIgnoring(T t) {
-        return ignoreElements.remove(t);
     }
 
     @Override
